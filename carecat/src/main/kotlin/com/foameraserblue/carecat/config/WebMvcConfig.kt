@@ -10,14 +10,14 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer
  */
 @Configuration
 class WebMvcConfig : WebMvcConfigurer {
-    val maxAge: Long = 3000;
+    val maxAge: Long = 3000
 
     override fun addCorsMappings(registry: CorsRegistry) {
         registry.addMapping("/**")
             .allowedOrigins("*")
             .allowedMethods("GET", "POST", "PUT", "PATCH", "OPTIONS")
             .allowedHeaders("*")
-            .allowCredentials(true)
-            .maxAge(maxAge);
+//            .allowCredentials(true)
+            .maxAge(maxAge)
     }
 }

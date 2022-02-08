@@ -3,7 +3,6 @@ package com.foameraserblue.carecat.web.entitiy
 import javax.persistence.*
 
 @Entity
-@Table(name = "user")
 class User(
     @Id @Column(name = "user_id", unique = true)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
