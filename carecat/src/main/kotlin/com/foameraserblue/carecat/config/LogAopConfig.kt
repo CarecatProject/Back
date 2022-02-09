@@ -22,7 +22,7 @@ class LogAopConfig() {
      * controller에 들어오는 모든 request에 대해 pointcut을 적용한다
      */
     @Pointcut("within(com.foameraserblue.carecat.web.controller..*)")
-    fun onRequest(): Unit {
+    fun onRequest() {
     }
 
 
@@ -32,32 +32,32 @@ class LogAopConfig() {
     @Around("com.foameraserblue.carecat.config.LogAopConfig.onRequest()")
     fun requestLogging(pjp: ProceedingJoinPoint): Any {
         val request: HttpServletRequest =
-            (RequestContextHolder.currentRequestAttributes() as (ServletRequestAttributes)).request;
+            (RequestContextHolder.currentRequestAttributes() as (ServletRequestAttributes)).request
 
-        val paramsMap: Map<String, Array<String>> = request.parameterMap;
+        val paramsMap: Map<String, Array<String>> = request.parameterMap
 
-        var params = "";
+        var params = ""
 
         if (paramsMap.isNotEmpty()) {
-            params = " [" + paramMapToString(paramsMap) + "]";
+            params = " [" + paramMapToString(paramsMap) + "]"
         }
 
-        val start: Long = System.currentTimeMillis();
+        val start: Long = System.currentTimeMillis()
 
-        val result: Any?;
+        val result: Any?
 
         try {
             result = pjp.proceed(pjp.args)
             return result
         } finally {
-            val end: Long = System.currentTimeMillis();
+            val end: Long = System.currentTimeMillis()
 
-            log.info {
-                "Request: %s %s %s < %s (%s ms)".format(
-                    request.method, request.requestURI,
-                    params, request.remoteHost, end - start
-                )
-            }
+            log.infof(
+                "Request: {} {} {} < {} ({} ms)",
+                request.method, request.requestURI,
+                params, request.remoteHost, end - start
+
+            )
 
         }
     }

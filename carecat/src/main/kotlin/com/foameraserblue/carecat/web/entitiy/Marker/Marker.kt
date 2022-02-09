@@ -6,7 +6,7 @@ import javax.persistence.*
 class Marker(
 
     @Id
-    @Column(name = "marker_id", unique = true)
+    @Column(name = "marker_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     val id: Long? = null,
 
@@ -17,7 +17,7 @@ class Marker(
     var lng: Double, //경도
 
     @Embedded
-    var markerDetails: MarkerDetails? //상세정보
+    var markerDetails: MarkerDetails //상세정보
 
 ) {
 
