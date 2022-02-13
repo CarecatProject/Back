@@ -1,12 +1,17 @@
 package com.foameraserblue.carecat.web.repository.marker
 
 import com.foameraserblue.carecat.web.dto.marker.AdjMarkerResponseDto
-import com.foameraserblue.carecat.web.entitiy.Marker.QMarker.marker
+import com.foameraserblue.carecat.web.entity.Marker.QMarker.marker
 import com.querydsl.core.types.Projections
 import com.querydsl.core.types.dsl.Expressions
 import com.querydsl.core.types.dsl.MathExpressions.*
 import com.querydsl.jpa.impl.JPAQueryFactory
 
+
+import org.springframework.stereotype.Repository
+import javax.annotation.Resource
+
+@Repository
 class MarkerRepositoryCustomImpl(
     val jpaQueryFactory: JPAQueryFactory
 ) : MarkerRepositoryCustom {
@@ -21,14 +26,16 @@ class MarkerRepositoryCustomImpl(
      *
      * @return [AdjMarkerResponseDto] 리스트
      */
-    override fun adjMarker(lat: Double, lng: Double, distance: Int): List<AdjMarkerResponseDto> {
+    override fun adjMarker(lat: Double, lng: Double, distance: Double): List<AdjMarkerResponseDto> {
+        val radius = distance / 2
+
         return jpaQueryFactory
             .select(
                 Projections.constructor(
                     AdjMarkerResponseDto::class.java,
                     marker.id,
                     marker.lat,
-                    marker.lon
+                    marker.lng
                 )
             )
             .from(marker)
@@ -38,7 +45,7 @@ class MarkerRepositoryCustomImpl(
                         cos(radians(Expressions.asNumber(lat)))
                             .multiply(cos(radians(marker.lat))).multiply(
                                 cos(
-                                    radians(marker.lon)
+                                    radians(marker.lng)
                                         .subtract(radians(Expressions.asNumber(lng)))
                                 )
                             ).add(
@@ -46,7 +53,7 @@ class MarkerRepositoryCustomImpl(
                                     .multiply(sin(radians(marker.lat)))
                             )
                     )
-                )).loe(distance)
+                )).loe(radius)
             )
             .fetch()
 

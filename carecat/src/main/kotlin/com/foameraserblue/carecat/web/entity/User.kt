@@ -1,4 +1,4 @@
-package com.foameraserblue.carecat.web.entitiy
+package com.foameraserblue.carecat.web.entity
 
 import javax.persistence.*
 

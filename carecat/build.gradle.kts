@@ -29,6 +29,7 @@ noArg {
     annotation("javax.persistence.Entity")
 }
 
+
 dependencies {
     implementation("org.springframework.boot:spring-boot-starter-data-jpa")
     implementation("org.springframework.boot:spring-boot-starter-data-redis")
@@ -56,6 +57,15 @@ dependencies {
     implementation("io.springfox:springfox-boot-starter:3.0.0")
     implementation("io.springfox:springfox-swagger2:3.0.0")
 
+    // 테스트(버전 맞춰야함!!!)
+    testImplementation("io.kotest:kotest-runner-junit5-jvm:4.4.3")
+    testImplementation("io.kotest:kotest-assertions-core-jvm:4.4.3")
+    implementation("io.kotest:kotest-extensions-spring:4.4.3")
+
+    implementation("com.ninja-squad:springmockk:3.1.0")
+//    testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.6.0")
+    testImplementation("io.mockk:mockk:1.12.0")
+
 
 }
 
@@ -69,3 +79,4 @@ tasks.withType<KotlinCompile> {
 tasks.withType<Test> {
     useJUnitPlatform()
 }
+

@@ -1,7 +1,7 @@
 package com.foameraserblue.carecat.web.dto.marker
 
-import com.foameraserblue.carecat.web.entitiy.Marker.Marker
-import com.foameraserblue.carecat.web.entitiy.Marker.MarkerDetails
+import com.foameraserblue.carecat.web.entity.Marker.Marker
+import com.foameraserblue.carecat.web.entity.Marker.MarkerDetails
 import io.swagger.annotations.ApiModel
 import io.swagger.annotations.ApiModelProperty
 

@@ -3,7 +3,7 @@ package com.foameraserblue.carecat.web.service
 import com.foameraserblue.carecat.web.dto.marker.AdjMarkerRequestDto
 import com.foameraserblue.carecat.web.dto.marker.AdjMarkerResponseDto
 import com.foameraserblue.carecat.web.dto.marker.MarkerRequestDto
-import com.foameraserblue.carecat.web.entitiy.Marker.Marker
+import com.foameraserblue.carecat.web.entity.Marker.Marker
 import com.foameraserblue.carecat.web.repository.marker.MarkerRepository
 import org.springframework.stereotype.Service
 import javax.transaction.Transactional

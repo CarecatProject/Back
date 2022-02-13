@@ -1,4 +1,4 @@
-package com.foameraserblue.carecat.web.entitiy.Marker
+package com.foameraserblue.carecat.web.entity.Marker
 
 import javax.persistence.Column
 import javax.persistence.Embeddable
